@@ -1,11 +1,11 @@
 --1. Вывести все поля и все строки.
 SELECT * FROM students;
 --2. Вывести всех студентов в таблице
-select * from students;
+select name from students;
 --3. Вывести только Id пользователей
  select id from students;
 --4. Вывести только имя пользователей
- SELECT name FROM students;
+ SELECT DISTINCT name FROM students;
 --5. Вывести только email пользователей
 select email from students;
  --6. Вывести имя и email пользователей

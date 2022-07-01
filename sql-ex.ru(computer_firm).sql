@@ -89,13 +89,13 @@ select avg (speed) from PC
  
 select avg(speed) from laptop where price >1000
 
---Задание: 13 (Serge I: 2002-11-02)
+--Задание: 13 
 Найдите среднюю скорость ПК, выпущенных производителем A.
 
 Select avg (speed) from PC inner join Product on PC.model = Product.model
 where maker ='A'
  
---Задание: 15 (Serge I: 2003-02-03)
+--Задание: 15 
 Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
 
 Select HD from PC group by HD having count(model)>1
@@ -104,18 +104,14 @@ Select HD from PC group by HD having count(model)>1
 Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
 Вывести: type, model, speed
 
---Задание: 17 (Serge I: 2003-02-03)
-Найдите модели ПК-блокнотов, скорость которых меньше скорости каждого из ПК.
-Вывести: type, model, speed
-
 Select distinct type, laptop.model, speed from Laptop inner join Product on Laptop.model=Product.model where speed <(select MIN(speed)from PC)
 
---Задание: 18 (Serge I: 2003-02-03)
+--Задание: 18 
 Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price
 
 SELECT DISTINCT maker,price from Printer inner join Product on Printer.model = Product.model where Price = (select MIN(price) from printer where color='y') and color='y'
 
---Задание: 19 (Serge I: 2003-02-13)
+--Задание: 19 
 Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.
 Вывести: maker, средний размер экрана.
 
@@ -123,7 +119,7 @@ Select maker, avg(screen)as Avg_screen
 from Laptop join Product on laptop.model=product.model group by maker
 
 
---Задание: 20 (Serge I: 2003-02-13)
+--Задание: 20 
 Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК.
 
 select maker, count(model) as Count_model from product where type = 'PC' group by maker having count(model) >= 3
@@ -134,12 +130,11 @@ select maker, count(model) as Count_model from product where type = 'PC' group b
 
 Select maker, MAX (price) as max_price from product inner join PC on product.model=PC.model group by maker
 
---Задание: 22 (Serge I: 2003-02-13)
+--Задание: 22 
 Для каждого значения скорости ПК, превышающего 600 МГц, определите среднюю цену ПК с такой же скоростью. Вывести: speed, средняя цена.
 
 select speed, avg(price) as avg_price from PC where speed >600 group by speed
 
---Задание: 23 (Serge I: 2003-02-14)
 Найдите производителей, которые производили бы как ПК
 со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
 Вывести: Maker
@@ -147,13 +142,13 @@ select speed, avg(price) as avg_price from PC where speed >600 group by speed
 Select distinct maker from product inner join PC on product.model=PC.model
 where pc.speed >=750 and maker in (select maker from laptop inner join product on laptop.model=product.model where laptop.speed>=750)
 
---Задание: 27 (Serge I: 2003-02-03)
+--Задание: 27 
 Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD.
  
 select maker, avg (HD) from product inner join pc on product.model=pc.model   
 where maker in(select maker  from product  where type='printer')  group by maker
 
---Задание: 28 (Serge I: 2012-05-04)
+--Задание: 28 
 Используя таблицу Product, определить количество производителей, выпускающих по одной модели.
 
 select count (maker) from product where maker in(select maker from product group by maker having count(model)=1)

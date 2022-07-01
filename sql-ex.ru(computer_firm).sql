@@ -135,6 +135,7 @@ Select maker, MAX (price) as max_price from product inner join PC on product.mod
 
 select speed, avg(price) as avg_price from PC where speed >600 group by speed
 
+--Задание: 23
 Найдите производителей, которые производили бы как ПК
 со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц.
 Вывести: Maker
